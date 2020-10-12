@@ -129,7 +129,7 @@ ScreenManager:
         text_color: 1, 1, 1, 1
         font_style: 'H3'
     MDLabel:
-        text: 'All scores are in format X:X = Sets.'
+        text: 'All scores are in format X-X = Sets.'
         halign: 'center'
         pos_hint: {'center_x':0.5,'center_y':0.825}
         theme_text_color: "Custom"
