@@ -4,7 +4,7 @@ from kivy.uix.screenmanager import ScreenManager
 from kivymd.uix.screen import Screen
 from kivy.core.window import Window
 import sports
-Window.size = (400, 600)
+
 
 
 screen_helper = """
