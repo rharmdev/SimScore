@@ -1,6 +1,6 @@
 # SimScore
 ## Fully functioning GUI Application (Android deployed) writen in Python.
-### Tennis Score Predictor and displayer written in Python and the Kivy(MD) Framework.
+### Sport Score displayer written in Python and the Kivy(MD) Framework.
 
 To create this Application I used a package named sports.py https://github.com/evansloan/sports.py - which allowed me to gather live scores from sports.
 
