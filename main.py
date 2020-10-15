@@ -2,16 +2,13 @@ from kivymd.app import MDApp
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import ScreenManager
 from kivymd.uix.screen import Screen
-from kivy.core.window import Window
 import sports
-
-
 
 screen_helper = """
 ScreenManager:
     LandingScreen:
-    PredictScreen:
-    ScoresScreen:
+    FootballScreen:
+    TennisScreen:
     MenuScreen:
 
 <LandingScreen>:
@@ -48,13 +45,17 @@ ScreenManager:
         text_color: 1, 1, 1, 1
         font_style: 'H3'
     MDRoundFlatButton:
-        text: 'Predict'
+        text: 'Football'
         pos_hint: {'center_x':0.2,'center_y':0.8}
-        on_press: root.manager.current = 'Predict'
+        on_press: root.manager.current = 'football'
     MDRoundFlatButton:
-        text: 'Scores'
+        text: 'Tennis'
         pos_hint: {'center_x':0.8,'center_y':0.8}
-        on_press: root.manager.current = 'note'
+        on_press: root.manager.current = 'tennis'
+    MDRoundFlatButton:
+        text: 'Site'
+        pos_hint: {'center_x':0.5,'center_y':0.8}
+        on_press:    
     MDLabel:
         text: 'Menu'
         halign: 'center'
@@ -64,65 +65,20 @@ ScreenManager:
         font_style: 'H4'
     MDIconButton:
         halign: "center"
-        pos_hint: {'center_x':0.5,'center_y':0.5}
+        pos_hint: {'center_x':0.8,'center_y':0.5}
         icon: "tennis"
         user_font_size: "120sp"
         on_press: 
- 
-<PredictScreen>:
-    label_wid: label_field
-    name: 'Predict'
-    MDLabel:
-        text: 'SimScore'
-        halign: 'center'
-        pos_hint: {'center_x':0.5,'center_y':0.925}
-        theme_text_color: "Custom"
-        text_color: 1, 1, 1, 1
-        font_style: 'H3'
-    MDLabel:
-        text: 'Predict'
-        halign: 'center'
-        pos_hint: {'center_x':0.5,'center_y':0.1}
-        theme_text_color: "Custom"
-        text_color: 1, 1, 1, 1
-        font_style: 'H4'
-    MDRectangleFlatButton:
-        text: 'Back'
-        pos_hint: {'center_x':0.5,'center_y':0.8}
-        on_press: root.manager.current = 'menu'
-    MDTextField:
-        id: text_field
-        multiline: True
-        size_hint: (.95, None)
-        hint_text: 'Predict your score.'
-        color_mode: 'custom'
-        max_text_length: 50
-        pos_hint: {'center_x':0.5,'center_y':0.5}
-        line_color_focus: 1, 1, 1, 1
-        font_size: '28'
     MDIconButton:
-        icon: "tennis"
-        user_font_size: "30sp"
-        ripple_scale: .5
-        pos_hint: {'center_x':0.95,'center_y':0.51}
-        on_press: label_field.text = text_field.text
-        on_release: text_field.text = '' 
-        
-    MDLabel:
-        id: label_field
-        text: ''
-        halign: 'center'
-        pos_hint: {'center_x':0.5,'center_y':0.2}
-        theme_text_color: "Hint"
-     
-    
-    
-    
-
-    
-
-<ScoresScreen>:
-    name: 'note'
+        halign: "center"
+        pos_hint: {'center_x':0.2,'center_y':0.5}
+        icon: "soccer"
+        user_font_size: "120sp"
+        on_press: 
+ 
+ 
+<FootballScreen>:
+    name: 'football'
     MDLabel:
         text: 'SimScore'
         halign: 'center'
@@ -131,14 +87,47 @@ ScreenManager:
         text_color: 1, 1, 1, 1
         font_style: 'H3'
     MDLabel:
-        text: 'All scores are in format X-X = Sets.'
+        text: 'All Football scores are in format X-X = Goals.'
         halign: 'center'
         pos_hint: {'center_x':0.5,'center_y':0.825}
         theme_text_color: "Custom"
         text_color: 1, 1, 1, 1
         font_style: 'H6'
     MDLabel:
-        text:   app.text
+        text:   app.footballtext
+        halign: 'center'
+        pos_hint: {'center_x':0.5,'center_y':0.55}
+        theme_text_color: "Hint"
+        text_color: 1, 1, 1, 1
+        font_style: 'Body1'
+    MDRectangleFlatButton:
+        text: 'Back'
+        pos_hint: {'center_x':0.5,'center_y':0.1}
+        on_press: root.manager.current = 'menu'
+    
+    
+    
+
+    
+
+<TennisScreen>:
+    name: 'tennis'
+    MDLabel:
+        text: 'SimScore'
+        halign: 'center'
+        pos_hint: {'center_x':0.5,'center_y':0.925}
+        theme_text_color: "Custom"
+        text_color: 1, 1, 1, 1
+        font_style: 'H3'
+    MDLabel:
+        text: 'All Tennis scores are in format X-X = Sets.'
+        halign: 'center'
+        pos_hint: {'center_x':0.5,'center_y':0.825}
+        theme_text_color: "Custom"
+        text_color: 1, 1, 1, 1
+        font_style: 'H6'
+    MDLabel:
+        text:   app.tennistext
         halign: 'center'
         pos_hint: {'center_x':0.5,'center_y':0.55}
         theme_text_color: "Hint"
@@ -156,39 +145,36 @@ class MenuScreen(Screen):
     pass
 
 
-class PredictScreen(Screen):
+class FootballScreen(Screen):
     pass
 
 
-class ScoresScreen(Screen):
+class TennisScreen(Screen):
     pass
 
 
 class LandingScreen(Screen):
     pass
 
+
 # Create the screen manager
 sm = ScreenManager()
 sm.add_widget(MenuScreen(name='menu'))
-sm.add_widget(PredictScreen(name='Predict'))
-sm.add_widget(ScoresScreen(name='note'))
-sm.add_widget(PredictScreen(name='land'))
-
-
+sm.add_widget(FootballScreen(name='football'))
+sm.add_widget(TennisScreen(name='tennis'))
+sm.add_widget(LandingScreen(name='land'))
 
 
 class AppApp(MDApp):
-    matches = sports.get_sport(sports.TENNIS)
-    text = str(matches)
+    tennismatches = sports.get_sport(sports.TENNIS)
+    tennistext = str(tennismatches)
+    footballmatches = sports.get_sport(sports.SOCCER)
+    footballtext = str(footballmatches)
 
     def build(self):
         self.theme_cls.theme_style = "Dark"
         self.screen = Builder.load_string(screen_helper)
         return self.screen
-
-
-
-
 
 
 AppApp().run()
