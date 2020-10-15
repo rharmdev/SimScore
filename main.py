@@ -5,8 +5,9 @@ from kivymd.uix.screen import Screen
 from kivy.core.window import Window
 import sports
 
+### Initializing the modules.
 
-
+### Kv File and code.
 screen_helper = """
 ScreenManager:
     LandingScreen:
@@ -174,7 +175,7 @@ sm.add_widget(PredictScreen(name='land'))
 
 
 
-
+### Main app class that calls the sports scores.
 class AppApp(MDApp):
     matches = sports.get_sport(sports.TENNIS)
     text = str(matches)
